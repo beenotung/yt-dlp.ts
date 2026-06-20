@@ -24,13 +24,18 @@ export function selectFormat(args: {
   info: VideoInfo
   type: 'storyboard' | 'audio' | 'video'
   only?: 'video' | 'audio'
+  /** file extension
+   * - if providing a single value, it is treated as the only allowed extension
+   * - if providing an array, the first matching extension is used
+   */
+  ext?: string | string[]
   /** video resolution, e.g. 640x480 px */
   resolution?: string | 'max' | 'min'
   /** audio sample rate, e.g. 44.1k Hz */
   asr?: number | 'max' | 'min'
 }): Format | null {
   let formats = args.info.formats
-  let { type, only, resolution, asr } = args
+  let { type, only, ext, resolution, asr } = args
 
   switch (type) {
     case 'storyboard':
@@ -59,6 +64,19 @@ export function selectFormat(args: {
         format => format.acodec !== 'none' && format.vcodec === 'none',
       )
       break
+  }
+
+  if (Array.isArray(ext)) {
+    for (let _ext of ext) {
+      let ext = _ext.toLowerCase()
+      if (formats.some(format => format.ext.toLowerCase() === ext)) {
+        formats = formats.filter(format => format.ext.toLowerCase() === ext)
+        break
+      }
+    }
+  } else if (ext) {
+    ext = ext.toLowerCase()
+    formats = formats.filter(format => format.ext.toLowerCase() === ext)
   }
 
   switch (resolution) {
