@@ -22,7 +22,7 @@ export async function getVideoInfo(args: { url: string }): Promise<VideoInfo> {
 
 export function selectFormat(args: {
   info: VideoInfo
-  media_type: 'storyboard' | 'audio' | 'video'
+  media_type?: 'storyboard' | 'audio' | 'video'
   only?: 'video' | 'audio'
   /** file extension
    * - if providing a single value, it is treated as the only allowed extension
@@ -64,6 +64,20 @@ export function selectFormat(args: {
         format => format.acodec !== 'none' && format.vcodec === 'none',
       )
       break
+  }
+
+  // default skip storyboard
+  if (!media_type && !only) {
+    let video_with_audio = formats.filter(
+      format => format.vcodec !== 'none' && format.acodec !== 'none',
+    )
+    if (video_with_audio.length > 0) {
+      formats = video_with_audio
+    } else {
+      formats = formats.filter(
+        format => format.vcodec !== 'none' || format.acodec !== 'none',
+      )
+    }
   }
 
   if (Array.isArray(ext)) {

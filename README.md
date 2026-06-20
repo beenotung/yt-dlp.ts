@@ -67,7 +67,7 @@ export function getVideoInfo(args: { url: string }): Promise<VideoInfo>
 
 export function selectFormat(args: {
   info: VideoInfo
-  media_type: 'storyboard' | 'audio' | 'video'
+  media_type?: 'storyboard' | 'audio' | 'video'
   only?: 'video' | 'audio'
   /** file extension
    * - if providing a single value, it is treated as the only allowed extension
