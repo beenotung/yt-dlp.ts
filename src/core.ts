@@ -1,6 +1,7 @@
 import { exec } from 'child_process'
 import { promisify } from 'util'
 import { Format, VideoInfo } from './types'
+import { extname } from 'path'
 
 let execAsync = promisify(exec)
 
@@ -170,13 +171,20 @@ export async function downloadVideo(args: {
 }): Promise<VideoInfo> {
   let cmd = `yt-dlp --no-playlist --print-json`
 
-  if (args.format_id) {
-    cmd += ` -f ${s(args.format_id)}`
+  let format_id = args.format_id
+  if (!format_id && args.filename) {
+    let ext = extname(args.filename)
+    let info = await getVideoInfo({ url: args.url })
+    let format = selectFormat({ info, ext })
+    format_id = format?.format_id
+  }
+  if (format_id) {
+    cmd += ` -f ${s(format_id)}`
   }
 
-  let filename = args.filename || args.filenameTemplate
-  if (filename) {
-    cmd += ` -o ${s(filename)}`
+  let output = args.filename || args.filenameTemplate
+  if (output) {
+    cmd += ` -o ${s(output)}`
   }
 
   cmd += ` ${s(args.url)}`
