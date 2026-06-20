@@ -1,6 +1,6 @@
 {
   "name": "yt-dlp.ts",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "type": "commonjs",
   "description": "TypeScript wrapper around yt-dlp for fetching video metadata, selecting formats, and downloading videos.",
   "keywords": [
