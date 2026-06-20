@@ -162,7 +162,7 @@ export async function downloadVideo(args: {
   filename?: string
   /** a template string for the filename.
    * See https://github.com/yt-dlp/yt-dlp/#output-template
-   * default: '%(title)q [%(id)q].%(ext)q'
+   * default: '%(title)s [%(id)s].%(ext)s'
    */
   filenameTemplate?: string
   signal?: AbortSignal
