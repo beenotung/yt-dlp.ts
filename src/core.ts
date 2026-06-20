@@ -22,7 +22,7 @@ export async function getVideoInfo(args: { url: string }): Promise<VideoInfo> {
 
 export function selectFormat(args: {
   info: VideoInfo
-  type: 'storyboard' | 'audio' | 'video'
+  media_type: 'storyboard' | 'audio' | 'video'
   only?: 'video' | 'audio'
   /** file extension
    * - if providing a single value, it is treated as the only allowed extension
@@ -35,9 +35,9 @@ export function selectFormat(args: {
   asr?: number | 'max' | 'min'
 }): Format | null {
   let formats = args.info.formats
-  let { type, only, ext, resolution, asr } = args
+  let { media_type, only, ext, resolution, asr } = args
 
-  switch (type) {
+  switch (media_type) {
     case 'storyboard':
       formats = formats.filter(
         format =>
