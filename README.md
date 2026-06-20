@@ -10,6 +10,7 @@ TypeScript wrapper around [yt-dlp](https://github.com/yt-dlp/yt-dlp) for fetchin
 - Fetch video metadata without downloading (`getVideoInfo`)
 - Select formats by media type, file extension, resolution, and audio sample rate (`selectFormat`)
 - Download videos to a directory (`downloadVideo`)
+- Zero npm dependencies — lightweight wrapper and helper functions that calls `yt-dlp` directly
 
 Requires [yt-dlp](https://github.com/yt-dlp/yt-dlp) to be installed and available on `PATH`.
 
