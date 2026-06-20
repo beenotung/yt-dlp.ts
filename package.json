@@ -3,7 +3,15 @@
   "version": "1.0.0",
   "type": "commonjs",
   "description": "TypeScript wrapper around yt-dlp for fetching video metadata, selecting formats, and downloading videos.",
-  "keywords": [],
+  "keywords": [
+    "yt-dlp",
+    "video",
+    "download",
+    "metadata",
+    "format",
+    "typescript",
+    "lightweight"
+  ],
   "author": "Beeno Tung <aabbcc1241@yahoo.com.hk> (https://beeno-tung.surge.sh)",
   "license": "BSD-2-Clause",
   "main": "dist/index.js",
