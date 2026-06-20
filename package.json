@@ -2,10 +2,10 @@
   "name": "yt-dlp.ts",
   "version": "0.0.0",
   "type": "commonjs",
-  "description": "",
+  "description": "TypeScript wrapper around yt-dlp for fetching video metadata, selecting formats, and downloading videos.",
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Beeno Tung <aabbcc1241@yahoo.com.hk> (https://beeno-tung.surge.sh)",
+  "license": "BSD-2-Clause",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
@@ -25,5 +25,13 @@
     "ts-node": "^10.9.2",
     "ts-node-dev": "^2.0.0",
     "typescript": "^5.9.3"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/beenotung/yt-dlp.ts.git"
+  },
+  "bugs": {
+    "url": "https://github.com/beenotung/yt-dlp.ts/issues"
+  },
+  "homepage": "https://github.com/beenotung/yt-dlp.ts#readme"
 }
