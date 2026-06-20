@@ -8,7 +8,7 @@ TypeScript wrapper around [yt-dlp](https://github.com/yt-dlp/yt-dlp) for fetchin
 
 - TypeScript support with typed `VideoInfo` and `Format` from yt-dlp JSON output
 - Fetch video metadata without downloading (`getVideoInfo`)
-- Select formats by type, resolution, and audio sample rate (`selectFormat`)
+- Select formats by type, file extension, resolution, and audio sample rate (`selectFormat`)
 - Download videos to a directory (`downloadVideo`)
 
 Requires [yt-dlp](https://github.com/yt-dlp/yt-dlp) to be installed and available on `PATH`.
@@ -68,6 +68,11 @@ export function selectFormat(args: {
   info: VideoInfo
   type: 'storyboard' | 'audio' | 'video'
   only?: 'video' | 'audio'
+  /** file extension
+   * - if providing a single value, it is treated as the only allowed extension
+   * - if providing an array, the first matching extension is used
+   */
+  ext?: string | string[]
   /** video resolution, e.g. 640x480 px */
   resolution?: string | 'max' | 'min'
   /** audio sample rate, e.g. 44.1k Hz */
