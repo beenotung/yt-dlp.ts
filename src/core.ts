@@ -82,7 +82,10 @@ export function selectFormat(args: {
     }
     default: {
       if (resolution) {
-        formats = formats.filter(format => format.resolution === resolution)
+        resolution = resolution.toLowerCase()
+        formats = formats.filter(
+          format => format.resolution.toLowerCase() === resolution,
+        )
       }
     }
   }
