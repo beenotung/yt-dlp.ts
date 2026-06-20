@@ -91,6 +91,8 @@ export function downloadVideo(args: {
    * default: '%(title)s [%(id)s].%(ext)s'
    */
   filenameTemplate?: string
+  /** set the mtime and atime of downloaded file as the upload timestamp if specified as 'upload' */
+  timestamp?: 'upload' | 'download'
   signal?: AbortSignal
   killSignal?: NodeJS.Signals | number
   timeout?: number

@@ -1,7 +1,8 @@
 import { exec } from 'child_process'
 import { promisify } from 'util'
 import { Format, VideoInfo } from './types'
-import { extname } from 'path'
+import { extname, join } from 'path'
+import fs from 'fs/promises'
 
 let execAsync = promisify(exec)
 
@@ -165,6 +166,8 @@ export async function downloadVideo(args: {
    * default: '%(title)s [%(id)s].%(ext)s'
    */
   filenameTemplate?: string
+  /** set the mtime and atime of downloaded file as the upload timestamp if specified as 'upload' */
+  timestamp?: 'upload' | 'download'
   signal?: AbortSignal
   killSignal?: NodeJS.Signals | number
   timeout?: number
@@ -204,6 +207,12 @@ export async function downloadVideo(args: {
     throw new Error('No output')
   }
   let info = JSON.parse(text) as VideoInfo
+
+  if (args.timestamp === 'upload') {
+    let file = join(args.directory, info.filename)
+    await fs.utimes(file, info.timestamp, info.timestamp)
+  }
+
   return info
 }
 
