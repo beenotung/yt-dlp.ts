@@ -83,14 +83,14 @@ export function selectFormat(args: {
 
   if (Array.isArray(ext)) {
     for (let _ext of ext) {
-      let ext = _ext.toLowerCase()
+      let ext = _ext.toLowerCase().replace(/^\./, '')
       if (formats.some(format => format.ext.toLowerCase() === ext)) {
         formats = formats.filter(format => format.ext.toLowerCase() === ext)
         break
       }
     }
   } else if (ext) {
-    ext = ext.toLowerCase()
+    ext = ext.toLowerCase().replace(/^\./, '')
     formats = formats.filter(format => format.ext.toLowerCase() === ext)
   }
 
